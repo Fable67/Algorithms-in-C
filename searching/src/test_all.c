@@ -1,5 +1,4 @@
 #include "stdio.h"
-#include "stdbool.h"
 
 #include "include/linear_search.h"
 
