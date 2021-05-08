@@ -15,6 +15,9 @@ I did my best to make them **as efficient as possible**, however, I **do not cla
 - Searching:
     - Linear Search
 
+- Clustering:
+    - K-means Clustering
+
 ## Installation
 
 ```bash
@@ -26,7 +29,8 @@ $ make run                // <-- To run all tests
 ## Usage
 
 ```c
-#include "stddef.h"                                 // <-- For size_t
+#include "stddef.h"
+#include "stdlib.h"                               
                                                      
 #include "include/selection_sort.h"                 
 #include "include/insertion_sort.h"
@@ -35,15 +39,29 @@ $ make run                // <-- To run all tests
 
 #include "include/linear_search.h"
 
-int nums[] = {3, 4, 2, 1, 0, 6, 5, 7, 9, 8};       // <-- Make int array
-size_t len = sizeof(nums)/sizeof(nums[0]);         // <-- Calculate its length
+#include "include/k_means_clustering.h"
+
+int nums[] = {3, 4, 2, 1, 0, 6, 5, 7, 9, 8};
+size_t len = sizeof(nums)/sizeof(nums[0]);
 
 selection_sort(nums_copy, len);
 insertion_sort(nums_copy, len);
 bubble_sort(nums_copy, len);
 merge_sort(nums_copy, len);
 
+
 int idx = linear_search(nums, 3, len);
+
+
+k_means_point_t* points[3];
+points[0] = k_means_create_point(0.1, 0.8);
+points[1] = k_means_create_point(0.5, 0.5);
+points[2] = k_means_create_point(0.8, 0.1);
+
+k_means_centroid_t** centroids;
+centroids = k_means(points, 1, 1, 0.000001);
+
+free(centroids)
 ```
 This includes most information needed to use the algorithms. If you want to know how they work feel free to look into the source code.
 
