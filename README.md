@@ -41,6 +41,7 @@ $ make run                // <-- To run all tests
 
 #include "include/k_means_clustering.h"
 
+// Sorting
 int nums[] = {3, 4, 2, 1, 0, 6, 5, 7, 9, 8};
 size_t len = sizeof(nums)/sizeof(nums[0]);
 
@@ -49,10 +50,10 @@ insertion_sort(nums_copy, len);
 bubble_sort(nums_copy, len);
 merge_sort(nums_copy, len);
 
-
+// Searching
 int idx = linear_search(nums, 3, len);
 
-
+// Clustering
 k_means_point_t* points[3];
 points[0] = k_means_create_point(0.1, 0.8);
 points[1] = k_means_create_point(0.5, 0.5);
