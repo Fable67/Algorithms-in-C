@@ -1,2 +1,57 @@
-# Algorithms-in-C
-This repo consists of some algorithms I coded in C. They are not supposed to be super efficient nor well implemented, I just coded them for learning purposes!
+## Algorithms in C
+
+This repo consists of some algorithms I coded in **C**.  
+I did my best to make them **as efficient as possible**, however, I **do not claim** they are!
+
+## Supported algorithms
+
+- Sorting:
+    - Selection Sort
+    - Insertion Sort
+    - Bubble Sort
+    - Merge Sort
+
+
+- Searching:
+    - Linear Search
+
+## Installation
+
+```bash
+$ make all                // <-- To compile all tests
+$ make [algorithm_type]   // <-- To compile specific tests of algorithm types, e.g. sorting, searching, ...
+$ make run                // <-- To run all tests
+```
+
+## Usage
+
+```c
+#include "stddef.h"                                 // <-- For size_t
+                                                     
+#include "include/selection_sort.h"                 
+#include "include/insertion_sort.h"
+#include "include/bubble_sort.h"
+#include "include/merge_sort.h"
+
+#include "include/linear_search.h"
+
+int nums[] = {3, 4, 2, 1, 0, 6, 5, 7, 9, 8};       // <-- Make int array
+size_t len = sizeof(nums)/sizeof(nums[0]);         // <-- Calculate its length
+
+selection_sort(nums_copy, len);
+insertion_sort(nums_copy, len);
+bubble_sort(nums_copy, len);
+merge_sort(nums_copy, len);
+
+int idx = linear_search(nums, 3, len);
+```
+This includes most information needed to use the algorithms. If you want to know how they work feel free to look into the source code.
+
+## Contributing
+Contributions are happily welcome. For **rather minor changes** like typos and efficiency improvements, just **post a pull request** that includes all necessary information about the change.  
+For **major changes** like new algorithms, please **open an issue first** to discuss it.
+
+Please always make sure to **update tests** as appropriate in the respective algorithm type directory. The test file is always named **test_all.c** and holds all tests for the algorithms of that specific type.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
