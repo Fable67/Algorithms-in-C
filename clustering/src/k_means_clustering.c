@@ -32,7 +32,33 @@ double calculate_distance_squared(double x1, double x2, double y1, double y2) {
   return delta_x*delta_x + delta_y*delta_y;
 }
 
+size_t k_means_closest_centroid_idx(k_means_centroid_t** centroids, size_t num_centroids, k_means_point_t* point) {
+  if(centroids == NULL || num_centroids == 0 || point == NULL) return 0;
+  double closest_centroid_distance = 3;
+  size_t closest_centroid_idx = 0;
+  double x1 = point->x;
+  double y1 = point->y;
+  for(size_t j = 0; j < num_centroids; j++) {
+    double x2 = centroids[j]->x;
+    double y2 = centroids[j]->y;
+    double dist = calculate_distance_squared(x1, x2, y1, y2);
+    if(dist < closest_centroid_distance) {
+      closest_centroid_distance = dist;
+      closest_centroid_idx = j;
+    }
+  }
+  return closest_centroid_idx;
+}
+
+void centroid_add_point(k_means_centroid_t* centroid, k_means_point_t* point, size_t index) {
+  if(centroid == NULL || point == NULL) return;
+  centroid->points[index] = point;
+  centroid->points = realloc(centroid->points, sizeof(centroid->points) + sizeof(k_means_point_t*));
+}
+
+// Note that this algorithm works in a space of 0<=x<=1, 0<=y<=1
 k_means_centroid_t** k_means(k_means_point_t** points, size_t num_points, size_t num_centroids, double precision) {
+  if(points == NULL || num_points == 0 || num_centroids == 0 || precision <= 0) return NULL;
   time_t t;
   srand((unsigned) time(&t));
   
@@ -44,8 +70,7 @@ k_means_centroid_t** k_means(k_means_point_t** points, size_t num_points, size_t
     centroids[i] = k_means_create_centroid(random_x, random_y);
   }
   // Save the positions of the centroids of the last iteration to detect convergence
-  size_t* centroids_last_idx = malloc(sizeof(size_t) * num_centroids);
-  memset(centroids_last_idx, 0, num_centroids);
+  size_t* centroids_last_idx = calloc(num_centroids, sizeof(size_t));
   k_means_point_t** centroids_last_points = malloc(sizeof(k_means_point_t*) * num_centroids);
   for(size_t i = 0; i < num_centroids; i++) {
     centroids_last_points[i] = k_means_create_point(centroids[i]->x, centroids[i]->y);
@@ -55,20 +80,9 @@ k_means_centroid_t** k_means(k_means_point_t** points, size_t num_points, size_t
   while(!is_converged) {  
     // Determine the closest centroid for each point
     for(size_t i = 0; i < num_points; i++) {
-      double closest_centroid_distance = 3;
-      size_t closest_centroid_idx = 0;
-      for(size_t j = 0; j < num_centroids; j++) {
-        double x1 = centroids[j]->x;
-        double y1 = centroids[j]->y;
-        double x2 = points[i]->x;
-        double y2 = points[i]->y;
-        double dist = calculate_distance_squared(x1, x2, y1, y2);
-        if(dist < closest_centroid_distance) {
-          closest_centroid_distance = dist;
-          closest_centroid_idx = j;
-        }
-      }
-      centroids[closest_centroid_idx]->points[centroids_last_idx[closest_centroid_idx]++] = points[i];
+      size_t closest_centroid_idx = k_means_closest_centroid_idx(centroids, num_centroids, points[i]);
+      centroid_add_point(centroids[closest_centroid_idx], points[i], centroids_last_idx[closest_centroid_idx]++);
+
     }
 
     // Move the centroids to the mean position of its points
@@ -79,11 +93,12 @@ k_means_centroid_t** k_means(k_means_point_t** points, size_t num_points, size_t
         mean_x += centroids[i]->points[j]->x;
         mean_y += centroids[i]->points[j]->y;
       }
-      mean_x /= centroids_last_idx[i] + 1e-9;
-      mean_y /= centroids_last_idx[i] + 1e-9;
+      mean_x /= centroids_last_idx[i] + 1e-12;
+      mean_y /= centroids_last_idx[i] + 1e-12;
       centroids[i]->x = mean_x;
       centroids[i]->y = mean_y;
       centroids_last_idx[i] = 0;
+      centroids[i]->points = realloc(centroids[i]->points, sizeof(k_means_point_t*));
     }
 
     // Check for convergence
@@ -113,3 +128,4 @@ k_means_centroid_t** k_means(k_means_point_t** points, size_t num_points, size_t
 
   return centroids;
 }
+
