@@ -54,13 +54,17 @@ merge_sort(nums_copy, len);
 int idx = linear_search(nums, 3, len);
 
 // Clustering
-k_means_point_t* points[3];
+size_t num_points = 3;
+size_t num_centroids = 1;
+double precision = 0.00001;
+
+k_means_point_t* points[num_points];
 points[0] = k_means_create_point(0.1, 0.8);
 points[1] = k_means_create_point(0.5, 0.5);
 points[2] = k_means_create_point(0.8, 0.1);
 
 k_means_centroid_t** centroids;
-centroids = k_means(points, 3, 1, 0.000001);
+centroids = k_means(points, num_points, num_centroids, precision);
 
 k_means_point_t* new_point = k_means_create_point(1.0, 0.0);
 size_t cluster_idx = k_means_closest_centroid_idx(centroids, 1, new_point);
