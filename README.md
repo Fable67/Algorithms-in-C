@@ -23,7 +23,7 @@ I did my best to make them **as efficient as possible**, however, I **do not cla
 ```bash
 $ make all                // <-- To compile all tests
 $ make [algorithm_type]   // <-- To compile specific tests of algorithm types, e.g. sorting, searching, ...
-$ make run                // <-- To run all tests
+$ make run                // <-- To compile and run all tests
 ```
 
 ## Usage
