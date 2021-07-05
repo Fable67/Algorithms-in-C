@@ -33,3 +33,4 @@ void _merge_sort(int nums[], const unsigned int start, const unsigned int end) {
 void merge_sort(int nums[], const size_t len) {
 	_merge_sort(nums, 0, len-1);
 }
+

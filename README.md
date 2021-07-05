@@ -14,6 +14,7 @@ I did my best to make them **as efficient as possible**, however, I **do not cla
 
 - Searching:
     - Linear Search
+    - Binary Search
 
 - Clustering:
     - K-means Clustering
@@ -21,9 +22,9 @@ I did my best to make them **as efficient as possible**, however, I **do not cla
 ## Installation
 
 ```bash
-$ make all                // <-- To compile all tests
-$ make [algorithm_type]   // <-- To compile specific tests of algorithm types, e.g. sorting, searching, ...
-$ make run                // <-- To compile and run all tests
+$ cd sorting && make                   // <-- To compile all sorting    algorithms
+$ cd searching && make                 // <-- To compile all searching  algorithms
+$ cd clustering && make                // <-- To compile all clustering algorithms
 ```
 
 ## Usage
@@ -45,13 +46,14 @@ $ make run                // <-- To compile and run all tests
 int nums[] = {3, 4, 2, 1, 0, 6, 5, 7, 9, 8};
 size_t len = sizeof(nums)/sizeof(nums[0]);
 
-selection_sort(nums_copy, len);
-insertion_sort(nums_copy, len);
-bubble_sort(nums_copy, len);
-merge_sort(nums_copy, len);
+selection_sort(nums, len);
+insertion_sort(nums, len);
+bubble_sort(nums, len);
+merge_sort(nums, len);
 
 // Searching
 int idx = linear_search(nums, 3, len);
+int idx = binary_search(nums, 3, len);        // <-- nums must be sorted for binary search to work
 
 // Clustering
 size_t num_points = 3;

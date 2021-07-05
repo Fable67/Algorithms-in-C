@@ -8,7 +8,7 @@
 #include "include/merge_sort.h"
 
 
-bool verify_sort(char name[], int a[], size_t len) { 
+void verify_sort(char name[], int a[], size_t len) { 
 	bool res = true;
 	for(unsigned int i = 0; i < len; i++) {
 		if(a[i] != i) {
@@ -44,3 +44,4 @@ int main() {
 
 	return 0;
 }
+

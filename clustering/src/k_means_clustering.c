@@ -5,6 +5,7 @@
 
 #include "include/k_means_clustering.h"
 
+
 k_means_point_t* k_means_create_point(double x, double y) {
   k_means_point_t* point = malloc(sizeof(k_means_point_t));
   if(point == NULL) return NULL;

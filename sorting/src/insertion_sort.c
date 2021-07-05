@@ -14,3 +14,4 @@ void insertion_sort(int nums[], const size_t len) {
 		}
 	}
 }
+

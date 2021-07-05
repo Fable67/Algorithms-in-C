@@ -3,7 +3,7 @@
 #include "include/linear_search.h"
 #include "include/binary_search.h"
 
-void verify_search(char name[], int idx, int desired_idx) { 
+void verify_search(const char name[], int idx, int desired_idx) { 
 	if(idx == desired_idx) printf("%s works!\n", name);
 	else printf("%s does not work!\n", name);
 }

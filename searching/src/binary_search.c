@@ -14,7 +14,7 @@ int binary_search(const int nums[], const int item, const size_t len) {
 		} else {
 			end_idx = mid_idx-1;
 		}
-		if(0 <= start_idx < len && 0 <= end_idx < len && start_idx <= end_idx) 
+		if(0 <= start_idx && start_idx < len && 0 <= end_idx && end_idx < len && start_idx <= end_idx) 
 			mid_idx = (start_idx+end_idx)/2;
 		else 
 			return -1;
