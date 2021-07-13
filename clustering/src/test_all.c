@@ -2,7 +2,7 @@
 #include "stdlib.h"
 #include "math.h"
 
-#include "include/k_means_clustering.h"
+#include "k_means_clustering.h"
 
 int main() {
 	k_means_point_t* points[5];

@@ -3,7 +3,7 @@
 #include "stdbool.h"
 #include "string.h"
 
-#include "include/k_means_clustering.h"
+#include "k_means_clustering.h"
 
 
 k_means_point_t* k_means_create_point(double x, double y) {

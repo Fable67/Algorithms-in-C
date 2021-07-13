@@ -1,4 +1,4 @@
-#include "include/binary_search.h"
+#include "binary_search.h"
 
 int binary_search(const int nums[], const int item, const size_t len) {
 	// The list has to be sorted!

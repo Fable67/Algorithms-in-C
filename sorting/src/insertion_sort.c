@@ -1,4 +1,4 @@
-#include "include/insertion_sort.h"
+#include "insertion_sort.h"
 
 void insertion_sort(int nums[], const size_t len) {
 	int temp;

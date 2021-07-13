@@ -1,6 +1,6 @@
 #include "string.h"
 
-#include "include/merge_sort.h"
+#include "merge_sort.h"
 
 void _merge(int nums[], const unsigned int start, const unsigned int mid, const unsigned int end) {
 	unsigned int size_l = mid - start + 1;

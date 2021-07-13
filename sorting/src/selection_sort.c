@@ -1,4 +1,4 @@
-#include "include/selection_sort.h"
+#include "selection_sort.h"
 
 void selection_sort (int nums[], const size_t len) {
 	int min_elem, temp;

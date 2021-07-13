@@ -2,10 +2,10 @@
 #include "string.h"
 #include "stdbool.h"
 
-#include "include/selection_sort.h"
-#include "include/bubble_sort.h"
-#include "include/insertion_sort.h"
-#include "include/merge_sort.h"
+#include "selection_sort.h"
+#include "bubble_sort.h"
+#include "insertion_sort.h"
+#include "merge_sort.h"
 
 
 void verify_sort(char name[], int a[], size_t len) { 

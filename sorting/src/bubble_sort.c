@@ -1,4 +1,4 @@
-#include "include/bubble_sort.h"
+#include "bubble_sort.h"
 
 void bubble_sort(int nums[], const size_t len) {
 	int temp;
