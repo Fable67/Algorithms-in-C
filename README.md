@@ -71,7 +71,7 @@ centroids = k_means(points, num_points, num_centroids, precision);
 k_means_point_t* new_point = k_means_create_point(1.0, 0.0);
 size_t cluster_idx = k_means_closest_centroid_idx(centroids, 1, new_point);
 
-free(centroids)
+k_means_free_centroids(centroids, num_centroids);
 ```
 This includes most information needed to use the algorithms. If you want to know how they work feel free to look into the source code.
 

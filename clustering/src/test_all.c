@@ -22,13 +22,7 @@ int main() {
 		printf("(%f, %f)\n", centroids[0]->x, centroids[0]->y);
 	}
 
-  for(size_t i = 0; i < 1; i++) {
-    for(size_t j = 0; j < 10000; j++)
-      free(centroids[i]->points[j]);
-    free(centroids[i]->points);
-    free(centroids[i]);
-  }
-	free(centroids);
+  k_means_free_centroids(centroids, 1);
 
 	return 0;
 }

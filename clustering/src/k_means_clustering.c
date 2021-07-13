@@ -27,6 +27,16 @@ k_means_centroid_t* k_means_create_centroid(double x, double y) {
   return centroid;
 }
 
+void k_means_free_centroids(k_means_centroid_t** centroids, size_t num_centroids) {
+  for(size_t i = 0; i < num_centroids; i++) {
+    for(size_t j = 0; j < 10000; j++)
+      free(centroids[i]->points[j]);
+    free(centroids[i]->points);
+    free(centroids[i]);
+  }
+	free(centroids);
+}
+
 double calculate_distance_squared(double x1, double x2, double y1, double y2) {
   double delta_x = x2 - x1;
   double delta_y = y2 - y1;
